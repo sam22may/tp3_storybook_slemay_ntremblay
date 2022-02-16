@@ -1,0 +1,17 @@
+on: push
+name: Deploy Storybook
+jobs:
+  storybook-deploy:
+    name: Build Storybook
+    runs-on: ubuntu-latest
+    steps:
+    - name: build docs
+      run: npm run build:docs
+      
+    - name: Sync Files
+      uses: SamKirkland/FTP-Deploy-Action@4.2.0
+      with:
+        server: slemay.devwebgarneau.com
+        username: slemay
+        password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: public_html/tp3-storybook/

@@ -5,8 +5,13 @@ jobs:
     name: Build Storybook
     runs-on: ubuntu-latest
     steps:
-    - name: build docs
-      run: yarn build:docs
+    - name: latest code
+      uses: actions/checkout@v2
+
+    - name: build
+      run: |
+        yarn
+        yarn build:docs
       
     - name: Sync Files
       uses: SamKirkland/FTP-Deploy-Action@4.2.0
